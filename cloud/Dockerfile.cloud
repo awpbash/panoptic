@@ -1,0 +1,25 @@
+# cloud/Dockerfile.cloud
+FROM python:3.9-slim
+
+# Install Git and other dependencies
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Correctly copy requirements.txt from the root of the build context
+COPY requirements.txt .
+
+# Use the correct index URL for PyTorch to find the CUDA-enabled version
+RUN pip install --no-cache-dir -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu118
+
+# Copy the rest of the project files from the root of the build context
+COPY . .
+
+# Expose the port for FastAPI
+EXPOSE 8000
+
+# Command to run the application using uvicorn
+CMD ["uvicorn", "cloud.api:app", "--host", "0.0.0.0", "--port", "8000"]

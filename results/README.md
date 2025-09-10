@@ -1,0 +1,1 @@
+contains results of loitering from edge computing

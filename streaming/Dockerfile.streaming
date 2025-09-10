@@ -1,0 +1,25 @@
+# streaming/Dockerfile.streaming
+
+# Use a slim Python image as the base.
+# This keeps the image small and focused on the client's needs.
+FROM python:3.9-slim
+
+# Install necessary system libraries.
+# libgl1-mesa-glx is required for OpenCV to function, even for non-GUI operations.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the requirements file for the streaming client and install the dependencies.
+# Note: This assumes you have a separate file named `requirements_streaming.txt`.
+COPY requirements_streaming.txt .
+RUN pip install --no-cache-dir -r requirements_streaming.txt
+
+# Copy the main client script into the container
+COPY streaming/webcam.py .
+
+# Define the command to run your webcam client script
+CMD ["python", "webcam.py"]

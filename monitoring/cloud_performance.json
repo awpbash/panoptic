@@ -1,0 +1,30 @@
+{
+    "device_hardware": {
+        "cpu_count": 20,
+        "logical_cpu_count": 28,
+        "total_memory_gb": 31.73033905029297,
+        "gpu_info": {
+            "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+            "utilization_percent": 0,
+            "memory_used_mb": 231.0,
+            "memory_total_mb": 8188.0,
+            "supported": true
+        }
+    },
+    "processing_metrics": {
+        "frames_processed": 1803,
+        "total_processing_time_seconds": 14.985111474990845,
+        "frames_per_second": 120.3194252514629,
+        "latency_per_frame_ms": 8.31120991402709
+    },
+    "resource_usage": {
+        "start_of_process": {
+            "ram_percent": 73.3,
+            "cpu_percent": 13.4
+        },
+        "end_of_process": {
+            "ram_percent": 88.3,
+            "cpu_percent": 14.2
+        }
+    }
+}
